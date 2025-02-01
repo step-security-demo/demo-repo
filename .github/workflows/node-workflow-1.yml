@@ -2,9 +2,6 @@ name: Node workflow 1
 on:
   [workflow_dispatch, pull_request]
    
-permissions:
-  contents: read
-
 jobs:
   run:
     name: Run
@@ -14,7 +11,7 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest] # ubuntu-22.04
     steps:
-      - uses: step-security/harden-runner@f1db3319d7db49c70352da1f5d1a122f754e8c01 # int
+      - uses: step-security/harden-runner@int
         with:
           egress-policy: block
           allowed-endpoints: 
@@ -33,10 +30,10 @@ jobs:
       # run: sudo rm /etc/sudoers.d/runner
         
       - name: Checkout
-        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2.7.0
+        uses: actions/checkout@v2
 
       - name: Setup Node.js 15.x
-        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1.4.6
+        uses: actions/setup-node@v1
         with:
           node-version: 15.x
 
